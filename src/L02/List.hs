@@ -40,7 +40,9 @@ foldLeft f b (h :| t) = let b' = f b h in b' `seq` foldLeft f b' t
 -- Elegance: 0.5 marks
 -- Total: 3
 headOr :: List a -> a -> a
-headOr = error "todo"
+--headOr = error "todo"
+headOr Nil a = a
+headOr (a :| _) _ = a
 
 -- Exercise 2
 -- Relative Difficulty: 2

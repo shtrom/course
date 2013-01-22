@@ -63,7 +63,9 @@ suum = foldLeft (+) 0
 -- Elegance: 0.5 marks
 -- Total: 4
 len :: List a -> Int
-len = error "todo"
+--len = error "todo"
+len Nil = 0
+len (a :| t) = 1 + len t
 
 -- Exercise 4
 -- Relative Difficulty: 5

@@ -51,7 +51,9 @@ headOr (a :| _) _ = a
 -- Elegance: 0.5 marks
 -- Total: 4
 suum :: List Int -> Int
-suum = error "todo"
+--suum = error "todo"
+suum Nil = 0
+suum (a :| b) = a + suum b
 
 -- Exercise 3
 -- Relative Difficulty: 2

@@ -52,8 +52,9 @@ headOr (a :| _) _ = a
 -- Total: 4
 suum :: List Int -> Int
 --suum = error "todo"
-suum Nil = 0
-suum (a :| b) = a + suum b
+--suum Nil = 0
+--suum (a :| b) = a + suum b
+suum = foldLeft (+) 0
 
 -- Exercise 3
 -- Relative Difficulty: 2

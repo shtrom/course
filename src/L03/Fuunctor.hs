@@ -42,14 +42,16 @@ instance Fuunctor Optional where
 -- Exercise 4
 -- Relative Difficulty: 3
 instance Fuunctor ((->) t) where
-  -- fmaap :: (a -> b) -> ((->) t) a -> ((->) t) b
-  -- fmaap :: (a -> b) -> (t -> a) -> (t -> b)
+  -- fmaap :: (a -> b) -> ((->) t) a -> ((->) t) b -- '->' is right-associative
+  -- fmaap :: (a -> b) -> (t -> a) -> (t -> b) -- this is function composition
   fmaap =
-    error "todo"
+    (.)
 
 -----------------------
 -- SUPPORT LIBRARIES --
 -----------------------
 
 instance Fuunctor [] where
+  fmaap = fmap
+instance Fuunctor IO where
   fmaap = fmap

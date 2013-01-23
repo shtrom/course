@@ -64,8 +64,9 @@ suum = foldLeft (+) 0
 -- Total: 4
 len :: List a -> Int
 --len = error "todo"
-len Nil = 0
-len (a :| t) = 1 + len t
+--len Nil = 0
+--len (a :| t) = 1 + len t
+len = foldLeft (\ n _ -> n + 1) (0) --given n return n + 1
 
 -- Exercise 4
 -- Relative Difficulty: 5

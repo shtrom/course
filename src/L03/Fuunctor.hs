@@ -30,12 +30,20 @@ instance Fuunctor List where
 -- Exercise 3
 -- Relative Difficulty: 2
 instance Fuunctor Optional where
+  -- fmaap :: (a -> b) -> Optional a -> Optional b
+  -- data Optional a :: Full a | Empty
+  -- f :: a -> b
+  -- a :: a
+  -- f a :: b
+  -- Optional (f a) :: Optional b
   fmaap =
-    error "todo"
+    mapOptional
 
 -- Exercise 4
 -- Relative Difficulty: 3
 instance Fuunctor ((->) t) where
+  -- fmaap :: (a -> b) -> ((->) t) a -> ((->) t) b
+  -- fmaap :: (a -> b) -> (t -> a) -> (t -> b)
   fmaap =
     error "todo"
 

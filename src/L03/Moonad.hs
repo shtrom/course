@@ -122,7 +122,13 @@ lift4 = error "todo"
 -- Exercise 14
 -- Relative Difficulty: 3
 seequence :: Moonad m => [m a] -> m [a]
-seequence = error "todo"
+-- bind :: (a -> m b) -> m a -> m b
+-- reeturn :: a -> m a
+-- seequence [] = reeturn []
+-- h :: m a
+-- t :: [m a]
+-- seequence (h:t) = lift2 (:) h (seequence t)
+seequence = foldr (\a b -> lift2 (:) a b) (reeturn [])
 
 -- Exercise 15
 -- Relative Difficulty: 3

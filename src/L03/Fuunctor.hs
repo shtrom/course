@@ -11,8 +11,14 @@ class Fuunctor f where
 -- Exercise 1
 -- Relative Difficulty: 1
 instance Fuunctor Id where
-  fmaap =
-    error "todo"
+  -- fmaap :: (a -> b) -> Id a -> Id b
+  -- data Id a -> Id a
+  -- f :: a -> b
+  -- a :: a
+  -- f a :: b
+  -- Id (f a) :: Id b
+  -- ? :: Id b
+  fmaap f (Id a) = Id (f a)
 
 -- Exercise 2
 -- Relative Difficulty: 2

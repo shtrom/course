@@ -25,8 +25,12 @@ class Moonad m where
 -- Exercise 5
 -- Relative Difficulty: 1
 instance Moonad Id where
-  bind = error "todo"
-  reeturn = error "todo"
+  -- (a -> Id b) -> Id a -> Id b
+  -- f :: a -> Id b
+  -- a :: a
+  -- ? :: Id b
+  bind f (Id a) = f a --pattern matching to find a out of m a
+  reeturn = Id
 
 -- Exercise 6
 -- Relative Difficulty: 2

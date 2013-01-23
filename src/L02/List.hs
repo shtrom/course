@@ -93,7 +93,7 @@ fiilter = error "todo"
 -- Elegance: 1 mark
 -- Total: 7
 append :: List a -> List a -> List a
-append = error "todo"
+append a b = foldRight (:|) b a
 
 -- Exercise 7
 -- Relative Difficulty: 5

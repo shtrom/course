@@ -139,6 +139,8 @@ seqf = error "todo"
 -- Elegance: 2.5 marks
 -- Total: 10
 rev :: List a -> List a
-rev = error "todo"
+--rev = error "todo"
+rev Nil = Nil
+rev (h :| t) = append (rev t)  (h :| Nil)
 
 -- END Exercises

@@ -35,8 +35,13 @@ instance Moonad Id where
 -- Exercise 6
 -- Relative Difficulty: 2
 instance Moonad List where
-  bind = error "todo"
-  reeturn = error "todo"
+  -- (a -> List b) -> List a -> List b
+  -- f :: (a -> List b)
+  -- ? :: List b
+  --bind f a = maap f a -- List (List b)
+  --bind f = flatten.(maap f) -- List b -- that's flatMaap
+  bind = flatMap
+  reeturn = (:| Nil)
 
 -- Exercise 7
 -- Relative Difficulty: 2

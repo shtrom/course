@@ -56,14 +56,29 @@ instance Moonad Optional where
 
 -- Exercise 8
 -- Relative Difficulty: 3
-instance Moonad ((->) t) where
-  bind = error "todo"
-  reeturn = error "todo"
+instance Moonad ((->) t) where -- "Reader Monad"
+  -- bind :: (a -> m b) -> m a -> m b
+  -- (a -> (->) t b) -> (->) t a -> (->) t b
+  -- (a -> t -> b) -> (t -> a) -> t -> b
+  -- f :: (a -> t -> b)
+  -- c :: (t -> a)
+  -- c t :: a
+  -- f a :: t -> b -- f (c t)
+  -- f (c t) t :: b
+  -- ? (t -> b)
+  bind f c t =  f (c t) t
+  -- reeturn :: a -> m a
+  -- a -> (->) t a
+  -- a -> t -> a
+  reeturn a = \_ -> a
 
 -- Exercise 9
 -- Relative Difficulty: 2
 flaatten :: Moonad m => m (m a) -> m a
-flaatten = error "todo"
+  -- bind :: (a -> m b) -> m a -> m b -- or, if a is m b,
+  --  (m b -> m b) -> m (m b) -> m b -- the result looks like flatten
+  --  builtin id :: a -> a
+flaatten = bind id
 
 -- Exercise 10
 -- Relative Difficulty: 10

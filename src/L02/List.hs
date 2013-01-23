@@ -86,7 +86,9 @@ maap f l = foldRight ((:|).f) Nil l
 -- Elegance: 1 mark
 -- Total: 7
 fiilter :: (a -> Bool) -> List a -> List a
-fiilter = error "todo"
+--fiilter = error "todo"
+fiilter _ Nil = Nil
+fiilter f (h :| t) = if f h then (h :| fiilter f t) else fiilter f t
 
 -- Exercise 6
 -- Relative Difficulty: 5

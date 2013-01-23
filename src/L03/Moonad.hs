@@ -96,8 +96,15 @@ apply mf ma = bind (\f -> fmaap' f ma) mf
 -- Exercise 11
 -- Relative Difficulty: 6
 -- (bonus: use apply + fmaap')
+  -- fmaap' :: (a -> b) -> m a -> m b
 lift2 :: Moonad m => (a -> b -> c) -> m a -> m b -> m c
-lift2 = error "todo"
+ -- Name the arguments:
+ -- f :: (a -> b -> c)
+ -- ma :: m a
+ -- mb :: m a
+ -- fmaap' f ma ::  m (b -> c)
+ -- ? :: m c
+lift2 f ma mb = apply (fmaap' f ma) mb
 
 -- Exercise 12
 -- Relative Difficulty: 6

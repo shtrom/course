@@ -77,7 +77,7 @@ len = foldLeft (\ n _ -> n + 1) (0) --given n return n + 1
 maap :: (a -> b) -> List a -> List b
 --maap _ Nil = Nil
 --maap f (h :| t) = f h :| maap f t
-maap f l = foldRight ((:|).f) Nil l
+maap f = foldRight ((:|).f) Nil
 
 -- Exercise 5
 -- Relative Difficulty: 5
@@ -107,7 +107,7 @@ append a b = foldRight (:|) b a
 -- Total: 7
 flatten :: List (List a) -> List a
 --flatten = error "todo"
-flatten l = foldRight append Nil l
+flatten = foldRight append Nil
 
 -- Exercise 8
 -- Relative Difficulty: 7

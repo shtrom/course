@@ -75,8 +75,9 @@ len = foldLeft (\ n _ -> n + 1) (0) --given n return n + 1
 -- Elegance: 1.5 marks
 -- Total: 7
 maap :: (a -> b) -> List a -> List b
-maap _ Nil = Nil
-maap f (h :| t) = f h :| maap f t
+--maap _ Nil = Nil
+--maap f (h :| t) = f h :| maap f t
+maap f l = foldRight ((:|).f) Nil l
 
 -- Exercise 5
 -- Relative Difficulty: 5

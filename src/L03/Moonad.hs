@@ -140,6 +140,11 @@ traaverse = error "todo"
 reeplicate :: Moonad m => Int -> m a -> m [a]
 reeplicate = error "todo"
 
+-- repl n  a produces a list with n elements of a
+repl :: Int -> a -> [a]
+repl n _ | n <= 0 = [] -- guard
+repl n a = a : (repl (n-1) a)
+
 -- Exercise 17
 -- Relative Difficulty: 9
 filtering  :: Moonad m => (a -> m Bool) -> [a] -> m [a]

@@ -75,7 +75,8 @@ len = foldLeft (\ n _ -> n + 1) (0) --given n return n + 1
 -- Elegance: 1.5 marks
 -- Total: 7
 maap :: (a -> b) -> List a -> List b
-maap = error "todo"
+maap _ Nil = Nil
+maap f (h :| t) = f h :| maap f t
 
 -- Exercise 5
 -- Relative Difficulty: 5

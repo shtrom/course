@@ -104,7 +104,8 @@ lift2 :: Moonad m => (a -> b -> c) -> m a -> m b -> m c
  -- mb :: m a
  -- fmaap' f ma ::  m (b -> c)
  -- ? :: m c
-lift2 f ma mb = apply (fmaap' f ma) mb
+--lift2 f ma mb = apply (fmaap' f ma) mb
+lift2 f = apply.fmaap' f
 
 -- Exercise 12
 -- Relative Difficulty: 6

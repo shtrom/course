@@ -104,7 +104,8 @@ append a b = foldRight (:|) b a
 -- Elegance: 1 mark
 -- Total: 7
 flatten :: List (List a) -> List a
-flatten = error "todo"
+--flatten = error "todo"
+flatten l = foldRight append Nil l
 
 -- Exercise 8
 -- Relative Difficulty: 7

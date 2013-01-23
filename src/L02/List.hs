@@ -100,7 +100,8 @@ fiilter f = foldRight (\h -> if f h then (h :|) else id) Nil
 -- Elegance: 1 mark
 -- Total: 7
 append :: List a -> List a -> List a
-append a b = foldRight (:|) b a
+-- append a b = foldRight (:|) b a
+append = flip (foldRight (:|))
 
 -- Exercise 7
 -- Relative Difficulty: 5

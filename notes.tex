@@ -1,0 +1,113 @@
+\documentclass[a4paper]{article}
+
+% In case we need to use TeXisms in the title before Hyperef is loaded
+\def\texorpdfstring#1#2{#2}
+
+\usepackage{hyperref}
+
+\newcommand{\theTitle}{Introduction to Functional
+  Programming\texorpdfstring{\thanks{By Tony Morris, Nicta}}{ (By Tony Morris,
+  Nicta)} --- Notes}
+\newcommand{\theAuthor}{Olivier Mehani}
+
+\hypersetup{pdfstartview=FitV,
+  colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue,
+  pdftitle={\theTitle}, pdfauthor={\theAuthor}%, pdfkeywords={\theKeywords}
+}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[australian]{babel}
+
+\usepackage{url}
+\DeclareUrlCommand\fspath{\urlstyle{tt}}
+
+\newcommand{\latinlocution}[1]{\textit{#1}}
+\newcommand{\eg}{\latinlocution{e.g.}}
+\newcommand{\ie}{\latinlocution{i.e.}}
+%\newcommand{\etc}{\latinlocution{etc.}}
+%\newcommand{\apriori}{\latinlocution{a priori}}
+%\newcommand{\aposteriori}{\latinlocution{a posteriori}}
+%\newcommand{\adhoc}{\latinlocution{ad hoc}}
+%\newcommand{\etal}{\latinlocution{et al.}}
+%\newcommand{\perse}{\latinlocution{per se}}
+%\newcommand{\viz}{\latinlocution{viz.}}
+
+%\newcommand{\mat}[1]{\boldsymbol{#1}}
+
+\title{\theTitle}
+\author{\theAuthor}
+\date{23--24 January 20133}
+
+\begin{document}
+
+\maketitle
+
+\section{Functional Programming}
+
+Programming with functions. Functions produce values only given their arguments,
+and nothing else (\eg, no for loops nor variable updates).
+
+\section{Haskell}
+
+Examples can be seen in \fspath{src/L01/Optional.hs}.
+
+\begin{itemize}
+  \item Algebraic data types (ADT) are declared with\\
+    \verb_data Typename t = <constructor> | <constuctor> ... deriving (...)_
+  \item Funcions prototypes \\
+    \verb_funcName :: argA -> argB ... -> return_ where \verb_::_ can be read as
+    ``is of type''
+  \item Functions are then defined by what they return depending on their
+    arguments
+    \verb_funcName anyThing = returnValue_
+  \item Funcion declaration (\verb_->_) is right-associative, they are declared dealing with \emph{types}
+
+  \item All functions actually take only one argument, they however can return
+    functions applied to followup arguments they are defined with
+    \emph{variables}
+  \item Function application is left-associative
+  \item Pattern matching happens on constructors and datatypes
+  \item \verb#_# matches variables we don't need
+  \item Functions are prefixed by default, unless used as infix between
+    backticks
+  \item Functions starting with non-alpha characters should be declared in
+    paretheses and can be used as infix without the parentheses
+\end{itemize}
+
+\begin{itemize}
+  \item \verb_:i_ can be used to describe functions.
+  \item \verb_:t_ can be used to get the type of functions.
+  \item \verb_:r_ reloads the environment defined in \fspath{.ghci}
+\end{itemize}
+
+\verb_foldLeft_ repetitively applies the its first argument (a function, maybe
+lambda), to the head and rest of a list, returning its second argument in case
+the list is Nil. Lambda functions are declared as
+%
+\verb_(\ arg1 arg2 ... -> anything with args)_:
+%
+``Given \verb_arg1_, \verb_arg2_, return \verb_anything with args_'' (\verb_\_
+is the $\lambda$) \verb_foldRight_ replaces \verb_cons_ with its first argument,
+and \verb_Nil_ with its second. The latter can work on infinite lists, while the
+former needs to find a \verb_Nil_, as it loops until it finds it, and build the
+return value from there.
+
+\verb_._ is function composition: \verb_(.) f g -> \x f (g x)_
+
+Conditional constructs are of the form \verb_if <test> then <a> else <b>_, which
+is the equivalent to C \verb_<test>?<a>:<b>_.
+
+Temporary definitions can be written within the scope of an expression using
+\verb_let_:
+%
+\verb_fiilter f (h :| t) = if f h then (h :| fiilter f t) else fiilter f t_ and
+%
+\verb_fiilter f (h :| t) = let bli = fiilter f t in if f h then (h :| bli) else bli_
+are the same.
+
+\verb_flip_ allows to flip the expected arguments of a function. This can be
+done, along with other code refactoring to, \eg, avoid duplication, as there is
+no side effect to any of the functions used.
+
+\end{document}

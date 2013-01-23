@@ -12,7 +12,15 @@ class Moonad m where
   -- Relative Difficulty: 3
   -- (use bind and reeturn)
   fmaap' :: (a -> b) -> m a -> m b
-  fmaap' = error "todo"
+--  fmaap' = error "todo"
+  -- f :: a -> b
+  -- x :: m a
+  -- t :: a
+  -- f t :: b
+  -- reeturn (f t) :: m b
+  -- ? :: m b
+  --fmaap' f x = bind (\t -> reeturn (f t)) x
+  fmaap' f = bind (reeturn . f)
 
 -- Exercise 5
 -- Relative Difficulty: 1

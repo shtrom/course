@@ -83,7 +83,15 @@ flaatten = bind id
 -- Exercise 10
 -- Relative Difficulty: 10
 apply :: Moonad m => m (a -> b) -> m a -> m b
-apply = error "todo"
+  -- bind :: (a -> m b) -> m a -> m b
+  -- f :: a -> b
+  -- mf :: m (a -> b) -- used
+  -- ma :: m a
+  -- need to map from  (a -> b) and  m a to m b
+  -- ? m b
+apply mf ma = bind (\f -> fmaap' f ma) mf
+--apply mf ma = bind (\f -> fmaap' bind (\x -> reeturn (f x)) ma) mf
+-- bind.reeturn(f) is conceptually equivalent to fmaap (se above)
 
 -- Exercise 11
 -- Relative Difficulty: 6

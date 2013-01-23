@@ -17,8 +17,9 @@ instance Fuunctor Id where
 -- Exercise 2
 -- Relative Difficulty: 2
 instance Fuunctor List where
+  -- fmaap :: (a -> b) -> List a -> List b
   fmaap =
-    error "todo"
+    maap
 
 -- Exercise 3
 -- Relative Difficulty: 2

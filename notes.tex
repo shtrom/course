@@ -81,6 +81,13 @@ Examples can be seen in \fspath{src/L01/Optional.hs}.
   \item \verb_:r_ reloads the environment defined in \fspath{.ghci}
 \end{itemize}
 
+\section{Cons Lists}
+
+Examples can be seen in \fspath{src/L02/Lists.hs}.
+
+A list is made by concatenating a single element, to a possibly \verb_Nil_ tail
+list, through the Cons (\verb_:|_, here) operator.
+
 \verb_foldLeft_ repetitively applies the its first argument (a function, maybe
 lambda), to the head and rest of a list, returning its second argument in case
 the list is Nil. Lambda functions are declared as
@@ -109,5 +116,24 @@ are the same.
 \verb_flip_ allows to flip the expected arguments of a function. This can be
 done, along with other code refactoring to, \eg, avoid duplication, as there is
 no side effect to any of the functions used.
+
+
+\section{Functors}
+
+Examples can be seen in \fspath{src/L03/Functor.hs}.
+
+Functors are abstract methods. They are declared as \verb_class_es and defined
+with \verb_instance_s for specific types.
+
+\section{Monads}
+
+Examples can be seen in \fspath{src/L03/Moonad.hs}.
+
+Monads allow to provide low-level interfaces (\verb_>>=_, ``bind'', and \verb_return_)
+for specific type, and apply higher level functions based on them. ``Bind''
+extracts the information from the data, while ``Return'' re-formats an output
+into the specific type.
+
+All Monads are functors.
 
 \end{document}

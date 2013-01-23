@@ -120,7 +120,8 @@ flatten = foldRight append Nil
 -- Elegance: 1.5 mark
 -- Total: 8
 flatMap :: (a -> List b) -> List a -> List b
-flatMap = error "todo"
+--flatMap = error "todo"
+flatMap a = flatten.(maap a)
 
 -- Exercise 9
 -- Relative Difficulty: 8

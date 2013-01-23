@@ -133,7 +133,8 @@ seequence = foldr (\a b -> lift2 (:) a b) (reeturn [])
 -- Exercise 15
 -- Relative Difficulty: 3
 traaverse :: Moonad m => (a -> m b) -> [a] -> m [b]
-traaverse = error "todo"
+--traaverse = error "todo"
+traaverse f = seequence.map f -- or (seequence .) . map
 
 -- Exercise 16
 -- Relative Difficulty: 4

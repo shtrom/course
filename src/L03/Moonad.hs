@@ -46,8 +46,13 @@ instance Moonad List where
 -- Exercise 7
 -- Relative Difficulty: 2
 instance Moonad Optional where
-  bind = error "todo"
-  reeturn = error "todo"
+  -- (a -> Optional b) -> Optional a -> Optional b
+  -- f :: (a -> Optional b)
+  -- ? :: Optional b
+  bind _ Empty = Empty
+  bind f (Full a) = f a
+  --reeturn :: a -> Optional a
+  reeturn a = Full a
 
 -- Exercise 8
 -- Relative Difficulty: 3

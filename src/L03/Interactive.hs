@@ -81,9 +81,15 @@ data Op =
 convertInteractive ::
   IO ()
 convertInteractive =
-  putStr "Enter a character: " >-
+  putStr "Enter a string to convert to uppercase: " >-
   getLine >>- (\s -> --  IO [Char] >>- [Char]
   putStrLn (map toUpper s))
+
+-- Using do-notation
+-- convertInteractive =
+--    do putStr "Enter a string to convert to uppercase: "
+--       line <- getline
+--       putStrLn (map toUpper s))
 
 -- Exercise 2
 -- * Ask the user to enter a file name to reverse.

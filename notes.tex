@@ -76,8 +76,8 @@ Examples can be seen in \fspath{src/L01/Optional.hs}.
 \end{itemize}
 
 \begin{itemize}
-  \item \verb_:i_ can be used to describe functions.
   \item \verb_:t_ can be used to get the type of functions.
+  \item \verb_:i_ can be used to get slightly more information on functions.
   \item \verb_:r_ reloads the environment defined in \fspath{.ghci}
 \end{itemize}
 
@@ -129,11 +129,19 @@ with \verb_instance_s for specific types.
 
 Examples can be seen in \fspath{src/L03/Moonad.hs}.
 
-Monads allow to provide low-level interfaces (\verb_>>=_, ``bind'', and \verb_return_)
+Monads allow to provide low-level interfaces (\verb_>>=_, or ``bind'', and \verb_return_)
 for specific type, and apply higher level functions based on them. ``Bind''
 extracts the information from the data, while ``Return'' re-formats an output
 into the specific type.
 
 All Monads are functors.
 
+
+\section{Useful Basic Functions}
+
+\begin{description}
+  \item[\texttt{fmap}] run a functor on data inside a compound type
+  \item[\texttt{apply}] apply a function repetitively
+  \item[\texttt{sequence}] unwrap a Monad out of a list
+\end{description}
 \end{document}

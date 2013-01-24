@@ -102,7 +102,7 @@ apply mf ma = bind (\f -> fmaap' f ma) mf
 -- Exercise 12
 -- Relative Difficulty: 6
 -- (bonus: use apply + fmaap')
-  -- fmaap' :: (a -> b) -> m a -> m b
+ -- fmaap' :: Monad m => (a -> b) -> m a -> m b
 lift2 :: Moonad m => (a -> b -> c) -> m a -> m b -> m c
  -- Name the arguments:
  -- f :: (a -> b -> c)
@@ -117,7 +117,19 @@ lift2 f = apply.fmaap' f
 -- Relative Difficulty: 6
 -- (bonus: use apply + lift2)
 lift3 :: Moonad m => (a -> b -> c -> d) -> m a -> m b -> m c -> m d
+-- f :: (a -> b -> c -> d)
+-- ma :: m a
+-- mb :: m b
+-- mc :: m c
+-- fmaap' f ma ::  m (b -> c -> d)
+-- lift2 f ma :: 
+-- lift2 f ma mb :: m c
+-- apply (fmaap' f ma) mb :: m (c -> d)
+--
+-- ?? :: m d
 lift3 = error "todo"
+--lift3 f =  f
+
 
 -- Exercise 14
 -- Relative Difficulty: 6

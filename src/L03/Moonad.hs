@@ -139,7 +139,7 @@ traaverse f = seequence.map f -- or (seequence .) . map
 -- Exercise 16
 -- Relative Difficulty: 4
 reeplicate :: Moonad m => Int -> m a -> m [a]
-reeplicate = error "todo"
+reeplicate n ma = seequence (repl n ma)
 
 -- repl n  a produces a list with n elements of a
 repl :: Int -> a -> [a]

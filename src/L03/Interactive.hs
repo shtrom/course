@@ -81,7 +81,9 @@ data Op =
 convertInteractive ::
   IO ()
 convertInteractive =
-  error "todo"
+  putStr "Enter a character: " >-
+  getLine >>- (\s -> --  IO [Char] >>- [Char]
+  putStrLn (map toUpper s))
 
 -- Exercise 2
 -- * Ask the user to enter a file name to reverse.

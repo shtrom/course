@@ -7,7 +7,7 @@
 
 \newcommand{\theTitle}{Introduction to Functional
   Programming\texorpdfstring{\thanks{By Tony Morris, Nicta}}{ (By Tony Morris,
-  Nicta)} --- Notes}
+  Nicta)} --- Workshop Notes}
 \newcommand{\theAuthor}{Olivier Mehani}
 
 \hypersetup{pdfstartview=FitV,
@@ -36,7 +36,7 @@
 %\newcommand{\mat}[1]{\boldsymbol{#1}}
 
 \title{\theTitle}
-\author{\theAuthor}
+\author{\theAuthor\thanks{The errors therein are only mine!}}
 \date{23--24 January 20133}
 
 \begin{document}
@@ -125,23 +125,67 @@ Examples can be seen in \fspath{src/L03/Functor.hs}.
 Functors are abstract methods. They are declared as \verb_class_es and defined
 with \verb_instance_s for specific types.
 
+They can be likened to templates,\footnote{Matt, at QRL, did end up writing
+functional code in C++.} but need to be specifically implemented for each type
+they support.
+
 \section{Monads}
 
 Examples can be seen in \fspath{src/L03/Moonad.hs}.
 
-Monads allow to provide low-level interfaces (\verb_>>=_, or ``bind'', and \verb_return_)
-for specific type, and apply higher level functions based on them. ``Bind''
-extracts the information from the data, while ``Return'' re-formats an output
-into the specific type.
+Monads are abstract functors. They rely on low-level interfaces (\verb_>>=_, or
+``bind'', and \verb_return_) for specific types to apply their higher level
+functions. ``Bind'' extracts the information from the data, while ``Return''
+re-formats an output into the specific type.
 
-All Monads are functors.
-
+Binds, \verb_>>=,_ are useful to apply follow-up (potentially $\lambda$)
+functions on the contents of Monads and The ``anonymous bind,'' \verb_>>_,
+ignores that content, and is used when only the (side-)effect is desired (and
+can be used to chain functions).
 
 \section{Useful Basic Functions}
 
 \begin{description}
   \item[\texttt{fmap}] run a functor on data inside a compound type
-  \item[\texttt{apply}] apply a function repetitively
+  \item[bind] (\verb_>>=_) run a functor on data inside a compound type
+  \item[\texttt{apply}] apply a function repetitively to a list
   \item[\texttt{sequence}] unwrap a Monad out of a list
 \end{description}
+
+\section{More Haskell}
+
+Haskell provides support for \verb_do_ notation, which makes it easier to write
+some structures with binds. It allows to ignore anonymous binds, and provides a
+more imperative-looking program. Consider \verb_convertInteractive_ from
+\fspath{src/L03/Interactive.hs} (\verb_--_ introduces a comment):
+\begin{verbatim}
+convertInteractive ::
+  IO ()
+convertInteractive =
+  putStr "Enter a string to convert to uppercase: " >>
+  getLine >>= (\s -> -- IO [Char] >>= [Char]
+  putStrLn (map toUpper s))
+\end{verbatim}
+This is competely equivalent to the \verb_do_-notation'ed
+\begin{verbatim}
+convertInteractive ::
+  IO ()
+convertInteractive =
+   do putStr "Enter a string to convert to uppercase: "
+      line <- getline
+      putStrLn (map toUpper s))
+\end{verbatim}
+
+Another (interactive) example ($q(x)=(10+x)+(20\cdot x),\quad q(88)=1858$):
+\begin{verbatim}
+>> let q = do a <- (10+); b <- (20*); return (a+b)
+>> q 88
+1858
+\end{verbatim}
+
+\section{Monad Transformers}
+
+Monad Transformers put two Monads together to create a new Monad (see
+\fspath{MT.hs}). They wrap a specific inner Monad into any arbitrary outer one.
+
 \end{document}

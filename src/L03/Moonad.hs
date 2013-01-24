@@ -74,13 +74,19 @@ instance Moonad ((->) t) where -- "Reader Monad"
 
 -- Exercise 9
 -- Relative Difficulty: 2
+instance Moonad IO where
+  bind = error "todo"
+  reeturn = error "todo"
+
+-- Exercise 10
+-- Relative Difficulty: 2
 flaatten :: Moonad m => m (m a) -> m a
   -- bind :: (a -> m b) -> m a -> m b -- or, if a is m b,
   --  (m b -> m b) -> m (m b) -> m b -- the result looks like flatten
   --  builtin id :: a -> a
 flaatten = bind id
 
--- Exercise 10
+-- Exercise 11
 -- Relative Difficulty: 10
 apply :: Moonad m => m (a -> b) -> m a -> m b
   -- bind :: (a -> m b) -> m a -> m b
@@ -93,7 +99,7 @@ apply mf ma = bind (\f -> fmaap' f ma) mf
 --apply mf ma = bind (\f -> fmaap' bind (\x -> reeturn (f x)) ma) mf
 -- bind.reeturn(f) is conceptually equivalent to fmaap (se above)
 
--- Exercise 11
+-- Exercise 12
 -- Relative Difficulty: 6
 -- (bonus: use apply + fmaap')
   -- fmaap' :: (a -> b) -> m a -> m b
@@ -107,19 +113,19 @@ lift2 :: Moonad m => (a -> b -> c) -> m a -> m b -> m c
 --lift2 f ma mb = apply (fmaap' f ma) mb
 lift2 f = apply.fmaap' f
 
--- Exercise 12
+-- Exercise 13
 -- Relative Difficulty: 6
 -- (bonus: use apply + lift2)
 lift3 :: Moonad m => (a -> b -> c -> d) -> m a -> m b -> m c -> m d
 lift3 = error "todo"
 
--- Exercise 13
+-- Exercise 14
 -- Relative Difficulty: 6
 -- (bonus: use apply + lift3)
 lift4 :: Moonad m => (a -> b -> c -> d -> e) -> m a -> m b -> m c -> m d -> m e
 lift4 = error "todo"
 
--- Exercise 14
+-- Exercise 15
 -- Relative Difficulty: 3
 seequence :: Moonad m => [m a] -> m [a]
 -- bind :: (a -> m b) -> m a -> m b
@@ -130,13 +136,13 @@ seequence :: Moonad m => [m a] -> m [a]
 -- seequence (h:t) = lift2 (:) h (seequence t)
 seequence = foldr (\a b -> lift2 (:) a b) (reeturn [])
 
--- Exercise 15
+-- Exercise 16
 -- Relative Difficulty: 3
 traaverse :: Moonad m => (a -> m b) -> [a] -> m [b]
 --traaverse = error "todo"
 traaverse f = seequence.map f -- or (seequence .) . map
 
--- Exercise 16
+-- Exercise 17
 -- Relative Difficulty: 4
 reeplicate :: Moonad m => Int -> m a -> m [a]
 reeplicate n ma = seequence (repl n ma)
@@ -146,7 +152,7 @@ repl :: Int -> a -> [a]
 repl n _ | n <= 0 = [] -- guard
 repl n a = a : (repl (n-1) a)
 
--- Exercise 17
+-- Exercise 18
 -- Relative Difficulty: 9
 filtering  :: Moonad m => (a -> m Bool) -> [a] -> m [a]
 filtering = error "todo"

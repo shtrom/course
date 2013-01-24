@@ -155,7 +155,19 @@ repl n a = a : (repl (n-1) a)
 -- Exercise 18
 -- Relative Difficulty: 9
 filtering  :: Moonad m => (a -> m Bool) -> [a] -> m [a]
-filtering = error "todo"
+-- f :: (a -> m Bool)
+-- x :: [a]
+-- foldr (\h -> if f h then (h:) else id) [] :: (a->Bool) -> [a] -> [a] -- --filter?
+-- filter :: (a -> Bool) -> [a] -> [a]
+-- bind :: (a -> m b) -> m a -> m b
+-- bind f :: (m a -> m Bool)
+-- reeturn a:: a -> m a
+-- ma :: m [a]
+--filtering f x = reeturn (filter (\a -> bind f (reeturn a)) x)
+-- SOLUTION:
+filtering _ [] = reeturn []
+--filtering p (h:t) = bind (\tt -> fmaap' (\pp -> if pp then  h:tt else tt) (p h)) (filtering p t) --incorrect approcah: Monads are not commutative, due to possible side-effects not being in the desired order
+filtering p (h:t) = bind (\pp -> fmaap' (\tt -> if pp then h:tt else tt) (filtering p t )) (p h)
 
 -----------------------
 -- SUPPORT LIBRARIES --

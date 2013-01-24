@@ -100,7 +100,12 @@ convertInteractive =
 reverseInteractive ::
   IO ()
 reverseInteractive =
-  error "todo"
+  putStr "Enter an input filename: " >-
+  getLine >>- (\i ->
+  putStr "Enter an output filename: " >-
+  getLine >>- (\o ->
+  readFile i >>- (\f ->
+  writeFile o (reverse f))))
 
 -- Exercise 3
 -- * Ask the user to enter a string to url-encode.

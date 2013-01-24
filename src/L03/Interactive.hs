@@ -119,10 +119,30 @@ reverseInteractive =
 -- ~~~ toUpper :: Char -> Char -- (Data.Char) converts a character to upper-case.
 -- ~~~ putStr :: String -> IO () -- Prints a string to standard output.
 -- ~~~ putStrLn :: String -> IO () -- Prints a string and then a new line to standard output.
+
+data Replacement = Replacement Char String
+
 encodeInteractive ::
   IO ()
 encodeInteractive =
-  error "todo"
+  let urlEncode = [
+		Replacement ' ' "%20",
+		Replacement '\t' "%09",
+		Replacement '"' "%22"
+	] in
+  putStr "Enter a URL: " >-
+  getLine >>- (\u ->
+  putStrLn (flaatten (map (replace urlEncode) u)))
+
+replace :: [Replacement] -> Char -> String
+replace r c =
+	--find (\(Replacement f _) -> f == c) r >>- (m ->
+	--if m == Nothing then c else (\(Replacement f t) t))
+	let m = find (\(Replacement f _) -> f == c) r
+            s = case m of
+		   Nothing -> [c]
+		   Just (Replacement _ rs) -> rs
+	in s
 
 interactive ::
   IO ()

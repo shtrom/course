@@ -143,6 +143,12 @@ replace r c =
 		   Nothing -> [c]
 		   Just (Replacement _ rs) -> rs
 	in s
+--pattern-matching version:
+--encode :: Char -> String
+--encode ' ' = "%20"
+--encode '\t" = "%09"
+--encode '"' = "%22"
+--encode c = [c]
 
 interactive ::
   IO ()

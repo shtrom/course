@@ -75,8 +75,8 @@ instance Moonad ((->) t) where -- "Reader Monad"
 -- Exercise 9
 -- Relative Difficulty: 2
 instance Moonad IO where
-  bind = error "todo"
-  reeturn = error "todo"
+  bind = (=<<)
+  reeturn = return
 
 -- Exercise 10
 -- Relative Difficulty: 2
